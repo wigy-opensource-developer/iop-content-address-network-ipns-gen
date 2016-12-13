@@ -67,7 +67,7 @@ func showPubKey(sk crypto.PrivKey) {
 		fatal(err)
 	}
 
-	pubKeyString, err := multibase.Encode(multibase.Base64pad, pubKeyBytes)
+	pubKeyString, err := multibase.Encode(multibase.Base58BTC, pubKeyBytes)
 	if err != nil {
 		fatal(err)
 	}
@@ -97,7 +97,7 @@ func generateRecord(sk crypto.PrivKey, pathString string) {
 		fatal(err)
 	}
 
-	output, err := multibase.Encode(multibase.Base64pad, bytes)
+	output, err := multibase.Encode(multibase.Base64urlPad, bytes)
 	if err != nil {
 		fatal(err)
 	}

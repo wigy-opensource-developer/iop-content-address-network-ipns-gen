@@ -9,7 +9,7 @@ Once you have one, you need to extract the public key from that key:
 
 ```
 $ ipns-gen -key=key.priv pub
-MCAESIAjxcp/oM+cUefEBLW8IyKaoSADlJPUfNna2QyhtCMQa
+z4XTTM1jxcwnF4smRV3orZYBvGci92wLZqbovXg81uQprp4u7f
 ```
 
 This will be used as a `--key` option to `ipfs name upload`. Whenever you want to update the IPNS record
@@ -18,13 +18,13 @@ than all records published to that key.
 
 ```
 $ ipns-gen -key=key.priv -seq=1 /ipfs/QmbR6SFFFZ5ik1urY5pViF21MPEfPqfu2TRWGN7GFiDQBa
-MCjQvaXBmcy9RbWJSNlNGRkZaNWlrMXVyWTVwVmlGMjFNUEVmUHFmdTJUUldHTjdHRmlEUUJhEkAJ96oXh1AjRjECZ2x2b46shjnf8O2fuycK2uusTVjL6W5qeV1NEibVAtsEpY6Jcb3hqftP8AfynMOGZbCs54IBGAAiHjIwMTctMDEtMTJUMTY6MzU6NTYuODk0NDE0MDEyWigBMIDgpZa7EQ==
+UCjQvaXBmcy9RbWJSNlNGRkZaNWlrMXVyWTVwVmlGMjFNUEVmUHFmdTJUUldHTjdHRmlEUUJhEkCqK-0pHHkZvGXUl0tlvhYeAY8jAHYPMUfrmQDTlztaTKClUib19Ct81SqMvRbdUK5nhRvR6wstRVic-Q-OhVELGAAiHjIwMTctMDEtMTJUMTc6MzQ6MzYuMzExODI0MzM0WigBMIDgpZa7EQ==
 ```
 
 After that, you can call the following command on an IPFS node without sharing the private key:
 
 ```
-$ ipfs name upload --key MCAESIAjxcp/oM+cUefEBLW8IyKaoSADlJPUfNna2QyhtCMQa MCjQvaXBmcy...
+$ ipfs name upload --key z4XTTM1jxcwnF4smRV3orZYBvGci92wLZqbovXg81uQprp4u7f UCjQvaXBmcy...
 ```
 
 Whenever you are in doubt what is the ID of a key, you can display it with the following command:
