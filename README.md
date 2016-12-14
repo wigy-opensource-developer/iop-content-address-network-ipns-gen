@@ -64,4 +64,4 @@ PRs accepted.
 
 ## License
 
-[MIT](LICENSE) © 2016 [Fermat Foundation](fermat.org)
+[MIT](LICENSE) © 2016 [Fermat Foundation](http://www.fermat.org/)

@@ -9,8 +9,8 @@ import (
 
 	"github.com/ipfs/go-ipfs/namesys"
 	"github.com/ipfs/go-ipfs/path"
-	multibase "github.com/multiformats/go-multibase"
 
+	multibase "gx/ipfs/QmShp7G5GEsLVZ52imm6VP4nukpc5ipdHbscrxJMNasmSd/go-multibase"
 	crypto "gx/ipfs/QmfWDLQjGjVe4fr5CoztYW2DYYjRysMJrFe1RCsXLPTf46/go-libp2p-crypto"
 	peer "gx/ipfs/QmfMmLGoKzCHDN7cGgk64PJr4iipzidDRME8HABSJqvmhC/go-libp2p-peer"
 )
