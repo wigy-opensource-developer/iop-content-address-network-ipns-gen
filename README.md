@@ -1,9 +1,26 @@
 # ipns-gen
 
-A tool to generate and sign IPNS records on one machine and then be published on the IPFS network with
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+
+> A tool to generate and sign IPNS records on one machine, which can be then published on the IPFS network with
 `ipfs name upload` on another machine without sharing the private key of the IPNS record.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contribute](#contribute)
+- [License](#license)
+
+## Install
+
+```
+go get -u github.com/DeCentral-Budapest/ipns-gen
+make install
+```
+
 ## Usage
+
 First, you'll need to generate a publish key with [`ipfs-key`](https://github.com/DeCentral-Budapest/ipfs-key).
 Once you have one, you need to extract the public key from that key:
 
@@ -41,11 +58,10 @@ $ ipfs name resolve /ipns/Qmb1z6tLB1pf56vyeLh4GwGoBmJjeHWFC5kzuydo5WaifT
 /ipfs/QmbR6SFFFZ5ik1urY5pViF21MPEfPqfu2TRWGN7GFiDQBa
 ```
 
-## Installation
+## Contribute
 
-```
-go get github.com/DeCentral-Budapest/ipns-gen
-```
+PRs accepted.
 
-### License
-MIT
+## License
+
+[MIT](LICENSE) © 2016 [Fermat Foundation](fermat.org)
