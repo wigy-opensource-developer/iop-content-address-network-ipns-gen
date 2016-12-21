@@ -1,14 +1,5 @@
 # Minimum version numbers for software required to build IPFS
-IPFS_MIN_GO_VERSION = 1.5.2
-IPFS_MIN_GX_VERSION = 0.6
-IPFS_MIN_GX_GO_VERSION = 1.1
-
-ifeq ($(TEST_NO_FUSE),1)
-  go_test=go test -tags nofuse
-else
-  go_test=go test
-endif
-
+MIN_GO_VERSION = 1.5.2
 
 dist_root=/ipfs/QmXZQzBAFuoELw3NtjQZHkWSdA332PyQUj6pQjuhEukvg8
 gx_bin=bin/gx-v0.7.0
@@ -21,7 +12,7 @@ export IPFS_API ?= v04x.ipfs.io
 all: help
 
 go_check:
-	@bin/check_go_version $(IPFS_MIN_GO_VERSION)
+	@bin/check_go_version $(MIN_GO_VERSION)
 
 bin/gx-v%:
 	@echo "installing gx $(@:bin/gx-%=%)"
@@ -38,7 +29,7 @@ bin/gx-go-v%:
 gx_check: ${gx_bin} ${gx-go_bin}
 
 path_check:
-	@bin/check_go_path $(realpath $(shell pwd)) $(realpath $(GOPATH)/src/github.com/ipfs/ipget)
+	@bin/check_go_path $(realpath $(shell pwd)) $(realpath $(GOPATH)/src/github.com/DeCentral-Budapest/ipns-gen)
 
 deps: go_check gx_check path_check
 	${gx_bin} --verbose install --global
@@ -47,16 +38,27 @@ install: deps
 	go install
 
 build: deps
-	go build
+	go build -o ipns-gen.a
 
 clean:
-	rm -rf ./ipget
+	rm -rf ./ipns-gen.a ./ipns-gen.exe
 
 uninstall:
-	go clean github.com/ipfs/ipget
+	go clean github.com/DeCentral-Budapest/ipns-gen
 
-PHONY += all help gx_check
-PHONY += go_check deps install build nofuse clean uninstall
+PHONY += all help gx_check go_check deps
+PHONY += install build windows_build clean uninstall
+
+test: test_go_fmt build test_short
+
+test_go_fmt:
+	bin/test-go-fmt
+
+test_short:
+	go test -v ./...
+
+windows_build: deps
+	GOOS=windows GOARCH=amd64 go build -o ipns-gen.exe
 
 ##############################################################
 # A semi-helpful help message
@@ -64,23 +66,24 @@ PHONY += go_check deps install build nofuse clean uninstall
 help:
 	@echo 'DEPENDENCY TARGETS:'
 	@echo ''
-	@echo '  gx_check        - Installs or upgrades gx and gx-go'
-	@echo '  deps            - Download dependencies using gx'
+	@echo '  gx_check      - Installs or upgrades gx and gx-go'
+	@echo '  deps          - Download dependencies using gx'
 	@echo ''
 	@echo 'BUILD TARGETS:'
 	@echo ''
-	@echo '  all          - print this help message'
-	@echo '  build        - Build binary'
-	@echo '  install      - Build binary and install into $$GOPATH/bin'
+	@echo '  all           - print this help message'
+	@echo '  build         - Build binary'
+	@echo '  windows_build - Build Windows x64 binary'
+	@echo '  install       - Build binary and install into $$GOPATH/bin'
 	@echo ''
 	@echo 'CLEANING TARGETS:'
 	@echo ''
-	@echo '  clean        - Remove binary from build directory'
-	@echo '  uninstall    - Remove binary from $$GOPATH/bin'
+	@echo '  clean         - Remove binary from build directory'
+	@echo '  uninstall     - Remove binary from $$GOPATH/bin'
 	@echo ''
 	@echo 'TESTING TARGETS:'
 	@echo ''
-	@echo '  COMING SOON(TM)'
+	@echo '  test          - Run all tests'
 	@echo ''
 
 PHONY += help

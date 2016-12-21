@@ -11,20 +11,16 @@ import (
 	"github.com/ipfs/go-ipfs/path"
 
 	multibase "gx/ipfs/QmShp7G5GEsLVZ52imm6VP4nukpc5ipdHbscrxJMNasmSd/go-multibase"
-	crypto "gx/ipfs/QmfWDLQjGjVe4fr5CoztYW2DYYjRysMJrFe1RCsXLPTf46/go-libp2p-crypto"
 	peer "gx/ipfs/QmfMmLGoKzCHDN7cGgk64PJr4iipzidDRME8HABSJqvmhC/go-libp2p-peer"
+	crypto "gx/ipfs/QmfWDLQjGjVe4fr5CoztYW2DYYjRysMJrFe1RCsXLPTf46/go-libp2p-crypto"
 )
 
-var seq *uint64
-var reol *time.Duration
-var ttl *time.Duration
+var keyFile *string = flag.String("key", "", "Filename of the private key")
+var seq *uint64 = flag.Uint64("seq", 0, "Sequence number greater than any previously published value")
+var reol *time.Duration = flag.Duration("reol", time.Hour*24*30, "How long the record should be valid on the IPFS network")
+var ttl *time.Duration = flag.Duration("ttl", time.Minute*10, "How long the record can be cached")
 
 func main() {
-	keyFile := flag.String("key", "", "Filename of the private key")
-	seq = flag.Uint64("seq", 0, "Sequence number greater than any previously published value")
-	reol = flag.Duration("reol", time.Hour*24*30, "How long the record should be valid on the IPFS network")
-	ttl = flag.Duration("ttl", time.Minute*10, "How long the record can be cached")
-
 	flag.Parse()
 
 	arg := flag.Arg(0)
@@ -92,7 +88,7 @@ func generateRecord(sk crypto.PrivKey, pathString string) {
 		fatal(err)
 	}
 
- 	bytes, err := namesys.CreateEntry(sk, newPath, *seq, eol, *ttl)
+	bytes, err := namesys.CreateEntry(sk, newPath, *seq, eol, *ttl)
 	if err != nil {
 		fatal(err)
 	}

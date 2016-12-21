@@ -15,9 +15,12 @@
 ## Install
 
 ```
-go get -u github.com/DeCentral-Budapest/ipns-gen
+go get -d github.com/DeCentral-Budapest/ipns-gen
 make install
 ```
+
+Installation goes faster if you are running an IPFS daemon on localhost. If not, dependencies will be downloaded from
+http://gateway.ipfs.io:8080/ that is a bit crowded every now and then.
 
 ## Usage
 
