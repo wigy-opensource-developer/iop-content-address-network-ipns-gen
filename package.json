@@ -8,6 +8,11 @@
   },
   "gxDependencies": [
     {
+      "hash": "QmeQ9Ktc14W93VvghbktL5yjAFf4UErPgjb1mBK5pX5kEu",
+      "name": "go-ipfs",
+      "version": "0.4.5-iop"
+    },
+    {
       "hash": "QmShp7G5GEsLVZ52imm6VP4nukpc5ipdHbscrxJMNasmSd",
       "name": "go-multibase",
       "version": "0.3.0"

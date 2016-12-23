@@ -7,10 +7,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/ipfs/go-ipfs/namesys"
-	"github.com/ipfs/go-ipfs/path"
-
 	multibase "gx/ipfs/QmShp7G5GEsLVZ52imm6VP4nukpc5ipdHbscrxJMNasmSd/go-multibase"
+	"gx/ipfs/QmeQ9Ktc14W93VvghbktL5yjAFf4UErPgjb1mBK5pX5kEu/go-ipfs/namesys"
+	"gx/ipfs/QmeQ9Ktc14W93VvghbktL5yjAFf4UErPgjb1mBK5pX5kEu/go-ipfs/path"
 	peer "gx/ipfs/QmfMmLGoKzCHDN7cGgk64PJr4iipzidDRME8HABSJqvmhC/go-libp2p-peer"
 	crypto "gx/ipfs/QmfWDLQjGjVe4fr5CoztYW2DYYjRysMJrFe1RCsXLPTf46/go-libp2p-crypto"
 )

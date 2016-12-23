@@ -1,5 +1,9 @@
 # Minimum version numbers for software required to build IPFS
 MIN_GO_VERSION = 1.5.2
+LINUX_OUT = ipns-gen
+WINDOWS_OUT = ipns-gen.exe
+LINUX_PKG = ipns-gen-linux.tgz
+WINDOWS_PKG = ipns-gen-windows.zip
 
 dist_root=/ipfs/QmXZQzBAFuoELw3NtjQZHkWSdA332PyQUj6pQjuhEukvg8
 gx_bin=bin/gx-v0.7.0
@@ -32,21 +36,23 @@ path_check:
 	@bin/check_go_path $(realpath $(shell pwd)) $(realpath $(GOPATH)/src/github.com/DeCentral-Budapest/ipns-gen)
 
 deps: go_check gx_check path_check
-	${gx_bin} --verbose install --global
+	${gx_bin} install
 
 install: deps
 	go install
 
-build: deps
-	go build -o ipns-gen.a
+build: deps $(LINUX_OUT)
+linux_pkg: ./$(LINUX_PKG)
+windows_build: deps ./$(WINDOWS_OUT)
+windows_pkg: ./$(WINDOWS_PKG)
 
 clean:
-	rm -rf ./ipns-gen.a ./ipns-gen.exe
+	rm -rf ./$(LINUX_OUT) ./$(LINUX_PKG) ./$(WINDOWS_OUT) ./$(WINDOWS_PKG)
 
 uninstall:
 	go clean github.com/DeCentral-Budapest/ipns-gen
 
-PHONY += all help gx_check go_check deps
+PHONY += all help
 PHONY += install build windows_build clean uninstall
 
 test: test_go_fmt build test_short
@@ -57,8 +63,17 @@ test_go_fmt:
 test_short:
 	go test -v ./...
 
-windows_build: deps
-	GOOS=windows GOARCH=amd64 go build -o ipns-gen.exe
+$(LINUX_OUT):
+	go build -o $(LINUX_OUT)
+
+$(LINUX_PKG): $(LINUX_OUT)
+	tar -czf $(LINUX_PKG) $(LINUX_OUT)
+
+$(WINDOWS_OUT):
+	GOOS=windows GOARCH=amd64 go build -o ./$(WINDOWS_OUT)
+
+$(WINDOWS_PKG): $(WINDOWS_OUT)
+	zip -9 -v $(WINDOWS_PKG) $(WINDOWS_OUT)
 
 ##############################################################
 # A semi-helpful help message

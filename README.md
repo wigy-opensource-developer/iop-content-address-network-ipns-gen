@@ -1,5 +1,6 @@
 # ipns-gen
 
+[![Build Status](https://travis-ci.org/DeCentral-Budapest/ipns-gen.svg?branch=master)](https://travis-ci.org/DeCentral-Budapest/ipns-gen)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 > A tool to generate and sign IPNS records on one machine, which can be then published on the IPFS network with

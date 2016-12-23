@@ -4,18 +4,22 @@ go:
 go_import_path: github.com/DeCentral-Budapest/ipns-gen
 os:
 - linux
+cache:
+  directories:
+  - bin # Spare downloaded gx and gx-go
+  - $GOPATH/src/gx # Spare already downloaded dependencies
 install:
 - make install
 script:
 - make test
-- make windows_build
+- make windows_pkg linux_pkg
 deploy:
   provider: releases
   api_key:
     secure: jZz1tP47mx4Ua0xWY3xG1v7H0Y8lZgPiENt4eT60iwG35PCFvKk9nwKQRvsuHSDYzXGlv92uxhCkZvGFY5g+CyPGZgo1aTX6otuslrCKt0IVWAnFH/qby7WVB7p/N0MZvMGYm0AB1B0xJqdKrOBFnfPUuCCnkPu2uj7jsXEnf0rVtXtIOPdgQhxEKrcjMGZOcl64/lJI8Uvd8FK+glhC+/x5dT/YgKUYQibRD0TMbXjhThN7P8oFRL+pbn90fKMBgjlu9LMmmk6elJUUeceokQD+0bDIbDwcE3KSrida3KhGpf8X2OceNv/F1Sig4XvU5XBZXkaWFM0BRW6zLRPK6ClxXKCCAxHqqDGnPWYKp/I+mlM+9Klz6nmwlIoIJEbzK1nEFCLfGQt2tbntTZeIN+EifFAPM1IIMlwXvWrC87GZ4qoOraCLyCri0HMGOGcnt3qW/FwxaDjiT846ulF6skJ8VKbSggwPUB8Q7psoRlQgMXBWUHFqGzm6eHX8lrWiz5qlMDRjtkKg199S3ZQI60A91ImWA3Al5Ts55Ducx30fDOe1rSwmpQfx6KP3gh64WkYny7h0qPq44V+X5vkvA+Hhx7JY6OkqEGIA5tdJ1zTEQA+snQKjuU5KgPEnKgipylcKonE9iBPVHUXN1K9HFdfoBz7ZuDMYr00OV89QKEE=
   file:
-    - ipns-gen.a
-    - ipns-gen.exe
+    - ipns-gen-linux.tgz
+    - ipns-gen-windows.zip
   skip_cleanup: true
   on:
     tags: true
